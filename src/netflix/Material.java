@@ -1,38 +1,39 @@
 package netflix;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public abstract class Material {
     int id;
     String name;
     ArrayList<Integer> scores;
-    int releaseYear;
-    int price;
+    int release_year;
     Category category;
-    String type;
+    int price;
+    String type; // "movie" veya  "book"
 
-    public Material(int id, String name, ArrayList<Integer> scores, int releaseYear, int price, Category category, String type) {
+    public Material(int id, String name, ArrayList<Integer> scores, int release_year, int price, Category category, String type) {
         this.id = id;
         this.name = name;
         this.scores = scores;
-        this.releaseYear = releaseYear;
+        this.release_year = release_year;
         this.price = price;
         this.category = category;
         this.type = type;
     }
 
+    // Puan ekleme işlemi
     public void addScore(int score) {
         this.scores.add(score);
     }
 
+    // Ortalama puan hesaplama
     public double getAvgScore() {
-        if (this.scores.isEmpty()) return 0;
-        int sum = 0;
-        for (int score : this.scores) {
-            sum += score;
-        }
-        return (double) sum / this.scores.size();
+        return scores.stream()
+                .mapToInt(Integer::intValue)
+                .average()
+                .orElse(0.0); // Eğer hiç puan yoksa 0.0 döner.
     }
 
-    abstract void showDetail();
+    public abstract void showDetail();
 }
