@@ -97,11 +97,3 @@ Bu sınıf, kullanıcıların materyaller üzerinde işlem yapmasını sağlar.
   - `void showMostExpensiveMaterialInCategory(int categoryId)`
   - `void showMoviesByActor(int actorId)`
 
-## **Uygulama Akışı**
-
-### 1. Birden Çok Person Nesnesi Oluşturulması
-Örnek kişiler:
-```java
-Person director = new Person(1, "Steven", "Spielberg", 74);
-Person actor1 = new Person(2, "Leonardo", "DiCaprio", 46);
-Person writer = new Person(3, "George", "Orwell", 47);
