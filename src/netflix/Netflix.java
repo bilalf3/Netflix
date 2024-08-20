@@ -1,6 +1,9 @@
 package netflix;
 
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Netflix {
     ArrayList<Material> materials;
@@ -36,57 +39,35 @@ public class Netflix {
         }
     }
 
+    // En yüksek ortalama skora sahip materyali bulma
     public void showHighestAvgScoreMaterial() {
-        Material maxMaterial = null;
-        for (Material material : materials) {
-            if (maxMaterial == null || material.getAvgScore() > maxMaterial.getAvgScore()) {
-                maxMaterial = material;
-            }
-        }
-        if (maxMaterial != null) {
-            maxMaterial.showDetail();
-        }
+        materials.stream()
+                .max(Comparator.comparingDouble(Material::getAvgScore))
+                .ifPresent(Material::showDetail);
     }
 
+    // En düşük ortalama skorlu filmi bulma
     public void showLowestAvgScoreMovie() {
-        Movie minMovie = null;
-        for (Material material : materials) {
-            if (material instanceof Movie) {
-                Movie movie = (Movie) material;
-                if (minMovie == null || movie.getAvgScore() < minMovie.getAvgScore()) {
-                    minMovie = movie;
-                }
-            }
-        }
-        if (minMovie != null) {
-            minMovie.showDetail();
-        }
+        materials.stream()
+                .filter(material -> material instanceof Movie)
+                .min(Comparator.comparingDouble(Material::getAvgScore))
+                .ifPresent(Material::showDetail);
     }
 
+    // Belirli bir kategoriye ait en pahalı materyali bulma
     public void showMostExpensiveMaterialInCategory(int categoryId) {
-        Material expensiveMaterial = null;
-        for (Material material : materials) {
-            if (material.category.id == categoryId) {
-                if (expensiveMaterial == null || material.price > expensiveMaterial.price) {
-                    expensiveMaterial = material;
-                }
-            }
-        }
-        if (expensiveMaterial != null) {
-            expensiveMaterial.showDetail();
-        }
+        materials.stream()
+                .filter(material -> material.category.id == categoryId)
+                .max(Comparator.comparingInt(material -> material.price))
+                .ifPresent(Material::showDetail);
     }
 
+    // Belirli bir aktörün oynadığı filmleri  bulma
     public void showMoviesByActor(int actorId) {
-        for (Material material : materials) {
-            if (material instanceof Movie) {
-                Movie movie = (Movie) material;
-                for (Person actor : movie.actors) {
-                    if (actor.id == actorId) {
-                        movie.showDetail();
-                    }
-                }
-            }
-        }
+        materials.stream()
+                .filter(material -> material instanceof Movie)
+                .map(material -> (Movie) material)
+                .filter(movie -> movie.actors.stream().anyMatch(actor -> actor.id == actorId))
+                .forEach(Movie::showDetail);
     }
 }
