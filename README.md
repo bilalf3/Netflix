@@ -97,3 +97,123 @@ Bu sınıf, kullanıcıların materyaller üzerinde işlem yapmasını sağlar.
   - `void showMostExpensiveMaterialInCategory(int categoryId)`
   - `void showMoviesByActor(int actorId)`
 
+
+## Proje Akışı
+
+1. **Birden Çok `Person` Nesnesi Oluşturulması**
+   - Örnek kişiler:
+     ```java
+     Person director = new Person(1, "Steven", "Spielberg", 74);
+     Person actor1 = new Person(2, "Leonardo", "DiCaprio", 46);
+     Person writer = new Person(3, "George", "Orwell", 47);
+     ```
+
+2. **Birden Çok `Category` Nesnesi Oluşturulması**
+   - Örnek kategoriler:
+     ```java
+     Category drama = new Category(1, "D001", "Drama");
+     Category fiction = new Category(2, "B001", "Fiction");
+     ```
+
+3. **Birden Çok `Movie` Nesnesi Oluşturulması ve Puanların Eklenmesi**
+   - Örnek film ve puanlar:
+     ```java
+     ArrayList<Integer> movieScores = new ArrayList<>(Arrays.asList(9, 8, 10));
+     Movie movie1 = new Movie(1, "Inception", movieScores, 2010, 15, drama, "movie", new ArrayList<>(Arrays.asList(actor1)), director);
+     movie1.addScore(9);
+     ```
+
+4. **Birden Çok `Book` Nesnesi Oluşturulması ve Puanların Eklenmesi**
+   - Örnek kitap ve puanlar:
+     ```java
+     ArrayList<Integer> bookScores = new ArrayList<>(Arrays.asList(8, 7, 9));
+     Book book1 = new Book(2, "1984", bookScores, 1949, 20, fiction, "book", writer, 328);
+     book1.addScore(8);
+     ```
+
+5. **Bir `User` Nesnesi Tanımlanması**
+   - Örnek kullanıcı:
+     ```java
+     User user = new User(1, "John", "Doe", "testUser", "123456");
+     ```
+
+6. **Bir `Netflix` Nesnesi Oluşturulması**
+   - Netflix nesnesi:
+     ```java
+     ArrayList<Material> materials = new ArrayList<>();
+     Netflix netflix = new Netflix(materials);
+     ```
+
+7. **Netflix İçin Oturum Açılması**
+   - Kullanıcı oturumu:
+     ```java
+     netflix.login(user);
+     ```
+
+8. **Netflix Nesnesine Film ve Kitapların Eklenmesi**
+   - Film ve kitap ekleme:
+     ```java
+     netflix.addMovie(movie1);
+     netflix.addBook(book1);
+     ```
+
+9. **Netflix Fonksiyonlarının Çalıştırılması**
+   - **En Yüksek Ortalamalı Materyal:**
+     ```java
+     netflix.showHighestAvgScoreMaterial();
+     ```
+     Çıktı:
+     ```
+     Movie: Inception
+     Director: Steven Spielberg
+     Actors: Leonardo DiCaprio
+     Average Score: 9.0
+     Price: $15
+     ```
+
+   - **En Düşük Ortalamalı Film:**
+     ```java
+     netflix.showLowestAvgScoreMovie();
+     ```
+     Çıktı:
+     ```
+     Movie: Inception
+     Director: Steven Spielberg
+     Actors: Leonardo DiCaprio
+     Average Score: 9.0
+     Price: $15
+     ```
+
+   - **Belirli Bir Kategorideki En Pahalı Materyal:**
+     ```java
+     netflix.showMostExpensiveMaterialInCategory(2);
+     ```
+     Çıktı:
+     ```
+     Book: 1984
+     Writer: George Orwell
+     Number of Pages: 328
+     Average Score: 8.0
+     Price: $20
+     ```
+
+   - **Belirli Bir Aktörün Oynadığı Filmler:**
+     ```java
+     netflix.showMoviesByActor(2);
+     ```
+     Çıktı:
+     ```
+     Movie: Inception
+     Director: Steven Spielberg
+     Actors: Leonardo DiCaprio
+     Average Score: 9.0
+     Price: $15
+     ```
+
+## Sonuç
+
+Bu proje, verilen gereksinimleri karşılamakta ve belirtilen fonksiyonları başarılı bir şekilde çalıştırmaktadır. Stream API kullanılarak yapılan işlemler, kodu daha okunabilir ve verimli hale getirmiştir.
+
+## Lisans
+
+Bu proje [MIT Lisansı](LICENSE) altında lisanslanmıştır.
