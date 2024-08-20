@@ -103,38 +103,53 @@ Bu sınıf, kullanıcıların materyaller üzerinde işlem yapmasını sağlar.
 1. **Birden Çok `Person` Nesnesi Oluşturulması**
    - Örnek kişiler:
      ```java
-     Person director = new Person(1, "Steven", "Spielberg", 74);
-     Person actor1 = new Person(2, "Leonardo", "DiCaprio", 46);
-     Person writer = new Person(3, "George", "Orwell", 47);
+     Person actor1 = new Person(1, "Bilal ", "Fettahlioglu", 45);
+     Person actor2 = new Person(2, "Test", "Kisisi", 56);
+     Person director1 = new Person(3, "BYapimci", "Tarantino", 57);
+     Person writer1 = new Person(4, "Byazar", "Fettah", 46);
      ```
 
 2. **Birden Çok `Category` Nesnesi Oluşturulması**
    - Örnek kategoriler:
      ```java
-     Category drama = new Category(1, "D001", "Drama");
-     Category fiction = new Category(2, "B001", "Fiction");
+     Category cat1 = new Category(1, "DR", "Drama");
+     Category cat2 = new Category(2, "SF", "Science Fiction");
      ```
 
 3. **Birden Çok `Movie` Nesnesi Oluşturulması ve Puanların Eklenmesi**
    - Örnek film ve puanlar:
      ```java
-     ArrayList<Integer> movieScores = new ArrayList<>(Arrays.asList(9, 8, 10));
-     Movie movie1 = new Movie(1, "Inception", movieScores, 2010, 15, drama, "movie", new ArrayList<>(Arrays.asList(actor1)), director);
-     movie1.addScore(9);
+        ArrayList<Integer> scores1 = new ArrayList<>();
+        scores1.add(8);
+        scores1.add(9);
+        scores1.add(10);
+        ArrayList<Person> actors1 = new ArrayList<>();
+        actors1.add(actor1);
+        actors1.add(actor2);
+        Movie movie1 = new Movie(1, "Inception", scores1, 2010, 15, cat1, "movie", actors1, director1);
+
+        ArrayList<Integer> scores2 = new ArrayList<>();
+        scores2.add(7);
+        scores2.add(8);
+        ArrayList<Person> actors2 = new ArrayList<>();
+        actors2.add(actor1);
+        Movie movie2 = new Movie(2, "Titanic", scores2, 1997, 12, cat1, "movie", actors2, director1);
      ```
 
 4. **Birden Çok `Book` Nesnesi Oluşturulması ve Puanların Eklenmesi**
    - Örnek kitap ve puanlar:
      ```java
-     ArrayList<Integer> bookScores = new ArrayList<>(Arrays.asList(8, 7, 9));
-     Book book1 = new Book(2, "1984", bookScores, 1949, 20, fiction, "book", writer, 328);
-     book1.addScore(8);
+     ArrayList<Integer> scores3 = new ArrayList<>();
+     Book book1 = new Book(1, "1984", scores3, 1949, 20, cat2, "book", writer1, 328);
+     scores3.add(9);
+     scores3.add(10);
+     
      ```
 
 5. **Bir `User` Nesnesi Tanımlanması**
    - Örnek kullanıcı:
      ```java
-     User user = new User(1, "John", "Doe", "testUser", "123456");
+     User user = new User(1, "Test", "User", "testUser", "123456");
      ```
 
 6. **Bir `Netflix` Nesnesi Oluşturulması**
@@ -164,11 +179,11 @@ Bu sınıf, kullanıcıların materyaller üzerinde işlem yapmasını sağlar.
      ```
      Çıktı:
      ```
-     Movie: Inception
-     Director: Steven Spielberg
-     Actors: Leonardo DiCaprio
-     Average Score: 9.0
-     Price: $15
+     Kitap: 1984
+     Yazar: Byazar Fettah
+     Sayfa Sayisi: 328
+     Ortalama Skor: 9.5
+     Fiyat: ₺20
      ```
 
    - **En Düşük Ortalamalı Film:**
@@ -177,43 +192,38 @@ Bu sınıf, kullanıcıların materyaller üzerinde işlem yapmasını sağlar.
      ```
      Çıktı:
      ```
-     Movie: Inception
-     Director: Steven Spielberg
-     Actors: Leonardo DiCaprio
-     Average Score: 9.0
-     Price: $15
+     Film: Titanic
+     Yapimci: BYapimci Tarantino
+     Aktor: Bilal  Fettahlioglu
+     Ortalama Skor: 7.5
+     Fiyat: ₺12
      ```
 
    - **Belirli Bir Kategorideki En Pahalı Materyal:**
      ```java
-     netflix.showMostExpensiveMaterialInCategory(2);
+     netflix.showMostExpensiveMaterialInCategory(1);
      ```
      Çıktı:
      ```
-     Book: 1984
-     Writer: George Orwell
-     Number of Pages: 328
-     Average Score: 8.0
-     Price: $20
+     Film: Inception
+     Yapimci: BYapimci Tarantino
+     Aktor: Bilal  Fettahlioglu
+     Ortalama Skor: 9.0
+     Fiyat: ₺15
      ```
 
    - **Belirli Bir Aktörün Oynadığı Filmler:**
      ```java
-     netflix.showMoviesByActor(2);
+     netflix.showMoviesByActor(1);
      ```
      Çıktı:
      ```
-     Movie: Inception
-     Director: Steven Spielberg
-     Actors: Leonardo DiCaprio
-     Average Score: 9.0
-     Price: $15
+     Film: Titanic
+     Yapimci: BYapimci Tarantino
+     Aktor: Bilal Fettahlioglu
+     Ortalama Skor: 7.5
+     Fiyat: ₺12
      ```
 
-## Sonuç
 
-Bu proje, verilen gereksinimleri karşılamakta ve belirtilen fonksiyonları başarılı bir şekilde çalıştırmaktadır. Stream API kullanılarak yapılan işlemler, kodu daha okunabilir ve verimli hale getirmiştir.
 
-## Lisans
-
-Bu proje [MIT Lisansı](LICENSE) altında lisanslanmıştır.
