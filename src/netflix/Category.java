@@ -2,7 +2,7 @@ package netflix;
 
 public class Category {
     int id;
-    String categoryCode;
+    String  categoryCode;
     String categoryName;
 
     public Category(int id, String categoryCode, String categoryName) {
