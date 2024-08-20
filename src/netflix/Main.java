@@ -14,7 +14,7 @@ public class Main {
         Category cat1 = new Category(1, "DR", "Drama");
         Category cat2 = new Category(2, "SF", "Science Fiction");
 
-        // 3. Birden çok Movie nesnesi oluşturup ve score'ları ekledik
+        // 3. Birden çok Movie nesnesi oluşturup ve  score'ları ekledik
         ArrayList<Integer> scores1 = new ArrayList<>();
         scores1.add(8);
         scores1.add(9);
@@ -53,7 +53,7 @@ public class Main {
         netflix.addBook(book1);
 
         // 9. Netflix bölümünde bahsedilmiş olan N1-N2-N3-N4 fonksiyonlarını netflix nesnesi için çalıştırıp çıktılarının ayrı ayrı görüntülenmesini sağladık.
-        System.out.println("En Yüksek Ortalamalı :");
+        System.out.println("En Yüksek Ortalamalı Materyal:");
         netflix.showHighestAvgScoreMaterial();
 
         System.out.println("\nEn düşük Ortalama Puanlı Filmler:");
